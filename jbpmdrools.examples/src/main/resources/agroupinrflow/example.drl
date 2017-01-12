@@ -1,0 +1,29 @@
+
+global org.slf4j.Logger LOG;
+
+rule "Rule 1" 
+ruleflow-group "validation"
+    when
+        eval(true)
+    then
+        LOG.info("Ruleflow group activated");
+        kcontext.getKnowledgeRuntime().getAgenda().getAgendaGroup("groupA").setFocus();
+end
+
+rule "Rule 2" 
+agenda-group "groupA"
+    when
+        eval(true)
+    then
+        LOG.info("Agenda group A activated");
+end
+
+rule "Rule 3" 
+agenda-group "groupB"
+    when
+        eval(true)
+    then
+        LOG.info("Agenda group A activated");
+end
+
+
